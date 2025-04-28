@@ -3,6 +3,7 @@
 import { useSession } from "next-auth/react"
 import { handleSignIn } from "./authAction"
 import SignOut from "./Sign-Out"
+import { Button } from "@mantine/core"
 
 export default function SignIn() {
     const { data: session } = useSession()
@@ -10,7 +11,7 @@ export default function SignIn() {
     if (session?.user?.email) {
         return (
             <>
-                <p>You are an admin, welcome! {session?.user?.email}</p>
+                <p>You are Logged in! welcome! {session?.user?.name}</p>
                 <SignOut />
             </>
         )
@@ -19,7 +20,9 @@ export default function SignIn() {
     return (
         <>
             <form action={handleSignIn}>
-                <button type="submit">Signin with GitHub</button>
+                <Button type="submit" color="blue">
+                    Signin with GitHub
+                </Button>
             </form>
         </>
     )
