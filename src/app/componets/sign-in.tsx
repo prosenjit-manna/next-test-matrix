@@ -1,15 +1,11 @@
 'use client'
 
 import { useSession } from "next-auth/react"
-import { handleSignIn, handleSignOut } from "./authAction"
-import { useRouter } from "next/navigation"
+import { handleSignIn } from "./authAction"
 import SignOut from "./Sign-Out"
 
 export default function SignIn() {
     const { data: session } = useSession()
-    const router = useRouter()
-
-   
 
     if (session?.user?.email) {
         return (
