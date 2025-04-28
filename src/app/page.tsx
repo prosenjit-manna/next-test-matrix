@@ -1,5 +1,5 @@
 import SignIn from "./componets/sign-in";
-import { SessionProvider, useSession } from "next-auth/react"
+import { SessionProvider } from "next-auth/react"
 export default function Home() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen p-24">

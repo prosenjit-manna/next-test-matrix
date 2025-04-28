@@ -1,24 +1,21 @@
 'use client'
 
 import { useSession } from "next-auth/react"
-import { handleSignIn, handleSignOut } from "./siginInAction"
+import { handleSignIn, handleSignOut } from "./authAction"
 import { useRouter } from "next/navigation"
+import SignOut from "./Sign-Out"
 
 export default function SignIn() {
     const { data: session } = useSession()
     const router = useRouter()
 
-    const onLogout = async () => {
-        await handleSignOut()
-        router.refresh() // Refresh the current page
-        // Alternatively, use router.push("/") to redirect to the home page
-    }
+   
 
     if (session?.user?.email) {
         return (
             <>
                 <p>You are an admin, welcome! {session?.user?.email}</p>
-                <button onClick={onLogout}>Logout</button>
+                <SignOut />
             </>
         )
     }
