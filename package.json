@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@auth/mongodb-adapter": "^3.9.0",
+    "@headlessui/react": "^2.2.2",
+    "@heroicons/react": "^2.2.0",
     "@mantine/core": "^7.17.5",
     "@mantine/hooks": "^7.17.5",
     "@tabler/icons-react": "^3.31.0",

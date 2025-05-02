@@ -2,7 +2,7 @@
 
 import { signIn, signOut } from "@/auth"
 
-export async function handleSignIn() {
+export async function handleSignInWithGithub() {
     await signIn("github", {
         redirectTo: "/dashboard",
     })
