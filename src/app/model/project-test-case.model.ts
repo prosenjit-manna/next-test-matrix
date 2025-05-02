@@ -7,6 +7,7 @@ interface ITestStep {
 
 export interface IProjectTestCase extends Document {
   projectId: mongoose.Types.ObjectId;
+  workspaceId: mongoose.Types.ObjectId;
   title: string;
   description: string;
   steps: ITestStep[];
@@ -17,6 +18,11 @@ const projectTestCaseSchema: Schema<IProjectTestCase> = new mongoose.Schema({
   projectId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Project',
+    required: true,
+  },
+  workspaceId: { // Added workspaceId field
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Workspace',
     required: true,
   },
   title: {

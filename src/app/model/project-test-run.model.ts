@@ -3,6 +3,7 @@ import mongoose, { Document, Schema, Model } from 'mongoose';
 export interface IProjectTestRun extends Document {
   projectId: mongoose.Types.ObjectId;
   testCaseId: mongoose.Types.ObjectId;
+  workspaceId: mongoose.Types.ObjectId;
   runDate: Date;
   status: 'Passed' | 'Failed' | 'Skipped' | 'In Progress';
   executedBy: mongoose.Types.ObjectId;
@@ -13,6 +14,11 @@ const projectTestRunSchema: Schema<IProjectTestRun> = new mongoose.Schema({
   projectId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Project',
+    required: true,
+  },
+  workspaceId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Workspace',
     required: true,
   },
   testCaseId: {

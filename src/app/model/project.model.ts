@@ -2,11 +2,17 @@ import mongoose, { Document, Schema, Model } from 'mongoose';
 
 export interface IProject extends Document {
   name: string;
+  workspaceId: mongoose.Types.ObjectId;
   description: string;
   createdAt: Date;
 }
 
 const projectSchema: Schema<IProject> = new mongoose.Schema({
+  workspaceId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Workspace',
+    required: true,
+  },
   name: {
     type: String,
     required: true,

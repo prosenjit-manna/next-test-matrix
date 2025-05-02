@@ -3,12 +3,18 @@ import mongoose, { Document, Schema, Model } from 'mongoose';
 export interface IProjectUser extends Document {
   projectId: mongoose.Types.ObjectId;
   userId: mongoose.Types.ObjectId;
+  workspaceId: mongoose.Types.ObjectId;
 }
 
 const projectUserSchema: Schema<IProjectUser> = new mongoose.Schema({
   projectId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Project',
+    required: true,
+  },
+  workspaceId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Workspace',
     required: true,
   },
   userId: {
