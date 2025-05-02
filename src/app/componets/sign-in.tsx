@@ -2,8 +2,8 @@
 
 import { useSession } from "next-auth/react"
 import { handleSignIn } from "./authAction"
-import SignOut from "./Sign-Out"
 import { Button } from "@mantine/core"
+import SignOut from "./Sign-Out"
 
 export default function SignIn() {
     const { data: session } = useSession()
@@ -11,7 +11,8 @@ export default function SignIn() {
     if (session?.user?.email) {
         return (
             <>
-                <p>You are Logged in! welcome! {session?.user?.name}</p>
+                <p>You are Logged in! welcome! {session?.user?.name}</p> 
+                <p>Go To <a href="/dashboard">Dashboard</a></p>
                 <SignOut />
             </>
         )
