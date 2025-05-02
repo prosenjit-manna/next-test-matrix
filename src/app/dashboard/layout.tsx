@@ -1,35 +1,19 @@
-'use client'
 
-import { AppShell, Burger, Group } from '@mantine/core';
-import { useDisclosure } from '@mantine/hooks';
-import { NavbarSearch } from './navbar';
+import { auth } from '@/auth';
+import AppShellDashboard from './appShell';
 
-export default function DashboardLayout({
+export default async function DashboardLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
-  const [opened, { toggle }] = useDisclosure();
+
+  const session = await auth()
+  console.log('session', session);
 
   return (
-    <AppShell
-      header={{ height: 60 }}
-      navbar={{ width: 300, breakpoint: 'sm', collapsed: { mobile: !opened } }}
-      padding="md"
-    >
-      <AppShell.Header>
-        <Group h="100%" px="md">
-          <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
-          <h1>Test Matrix</h1>
-        </Group>
-      </AppShell.Header>
-      <AppShell.Navbar p="md">
-       <NavbarSearch />
-      </AppShell.Navbar>
-      <AppShell.Main>
-
+    <AppShellDashboard>
       {children}
-      </AppShell.Main>
-    </AppShell>
+    </AppShellDashboard>
   );
 }

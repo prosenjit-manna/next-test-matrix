@@ -3,6 +3,8 @@
 import { useState } from 'react'
 import { Dialog, DialogPanel } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
+import {  useSession } from 'next-auth/react'
+import SignOut from './componets/Sign-Out'
 
 const navigation = [
   { name: 'Product', href: '#' },
@@ -13,6 +15,8 @@ const navigation = [
 
 export default function Example() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const session = useSession()
+  console.log(session)
 
   return (
     <div className="bg-white">
@@ -46,9 +50,16 @@ export default function Example() {
             ))}
           </div>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-            <a href="/login" className="text-sm/6 font-semibold text-gray-900">
-              Log in <span aria-hidden="true">&rarr;</span>
-            </a>
+            {session.status === 'unauthenticated' && (
+              <a href="/login" className="text-sm/6 font-semibold text-gray-900">
+                Log in <span aria-hidden="true">&rarr;</span>
+              </a>
+            )}
+
+            {session.status === 'authenticated' && (
+              <SignOut />
+            )}
+
           </div>
         </nav>
         <Dialog open={mobileMenuOpen} onClose={setMobileMenuOpen} className="lg:hidden">
